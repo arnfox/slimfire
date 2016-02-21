@@ -1,0 +1,26 @@
+{
+  "name": "slimfire",
+  "version": "1.0.0",
+  "description": "Slimfire management app",
+  "private": true,
+  "devDependencies": {
+    "http-server": "^0.6.1",
+    "bower": "^1.3.1"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
+    "start": "http-server -a 0.0.0.0 -p 8282"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnfox/startbootstrap-sb-admin-2.git"
+  },
+  "author": "Pavel Antonov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arnfox/startbootstrap-sb-admin-2/issues"
+  },
+  "homepage": "https://github.com/arnfox/startbootstrap-sb-admin-2#readme"
+}
