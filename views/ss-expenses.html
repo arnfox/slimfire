@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">SS Expenses</h1>
+		
+		<ul>
+			<li ng-repeat="exp in expenses">
+				<a href ng-click="expenses.$remove(exp)">[x]</a> {{exp.amount}} | {{exp.description}}
+			</li>
+		</ul>
+
+		<form ng-submit="addExpense()" onsubmit="$('#ExpAmount').focus()" >
+			<input id="ExpAmount" ng-model="exp.amount" type="text" placeholder="amount" autofocus /> | <input ng-model="exp.description" type="text" placeholder="description" />
+			<input type='submit' value="Add Expense!" />
+		</form>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>

@@ -8,18 +8,14 @@ var slimfireApp = angular.module('slimfireApp', [
   //'slimfireServices'
 ]);
 
-slimfireApp.config(['$routeProvider',
+slimfireApp.config( 
   function($routeProvider) {
     $routeProvider.
-      when('/dashboard', {
-        templateUrl: 'views/dashboard.html',
-        controller: 'DashboardCtrl'
-      }).
-      when('/flot', {
-        templateUrl: 'views/flot.html',
-        controller: 'DashboardCtrl'
+      when('/app/:page', {
+        templateUrl: function(params){return 'views/' + params.page + '.html'},
+		controller: 'PagesCtrl'
       }).
       otherwise({
-        redirectTo: '/dashboard'
+        redirectTo: '/app/dashboard'
       });
-  }]);
+  });
