@@ -19,3 +19,9 @@ slimfireApp.config(
         redirectTo: '/app/dashboard'
       });
   });
+  
+slimfireApp.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
