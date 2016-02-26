@@ -2,13 +2,15 @@
 
 /* Controllers */
 
-var slimfireControllers = angular.module('slimfireControllers', ['firebase']);
+var slimfireControllers = angular.module('slimfireControllers', []);
 
-slimfireControllers.controller('PagesCtrl', ['$scope', '$firebaseArray', 
-	function($scope, $firebaseArray) {
-		var ref = new Firebase("https://slimfire.firebaseio.com/ss-expenses")
+slimfireControllers.controller('PagesCtrl', ['FB', 'authData', '$scope', 
+	function(FB, authData, $scope) {
 		
-		$scope.expenses = $firebaseArray(ref)
+		console.log('authData')
+		console.log(authData)
+		
+		$scope.expenses = FB['ss-expenses']
 		
 		$scope.addExpense = function(){
 			$scope.expenses.$add($scope.exp)
