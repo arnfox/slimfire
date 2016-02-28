@@ -39,7 +39,7 @@
     "flot.tooltip": "~0.8.4",
     "angular": "^1.5.0",
     "jquery": "^2.2.0",
-    "angular-route": "^1.5.0",
-    "angularfire": "^1.1.4"
+    "angularfire": "^1.1.4",
+    "angular-ui-router": "^0.2.18"
   }
 }

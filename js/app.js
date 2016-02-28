@@ -3,7 +3,7 @@
 /* App Module */
 
 var slimfireApp = angular.module('slimfireApp', [
-  'ngRoute',
+  'ui.router',
   'slimfireServices',
   'slimfireControllers'
 ]);
@@ -17,9 +17,26 @@ slimfireApp.run(function($rootScope, $location){
 })
 
 slimfireApp.config( 
-  function($routeProvider) {
-    $routeProvider.
-	  when('/login', {
+  function($stateProvider, $urlRouterProvider) {
+	$urlRouterProvider.
+      otherwise('/pages/dashboard');
+	
+    $stateProvider.
+	  state('page', {
+		url: '/pages/:id',
+		views: {
+			'@': {templateUrl: 'views/layouts/page.html'},
+			'nav@page': {templateUrl: 'views/partials/nav.html'},
+			'body@page': {templateUrl: function($stateParams){return 'views/pages/' + $stateParams.id + '.html'}}
+		},
+		controller: 'PagesCtrl'
+		// resolve: {
+			// 'authData': ['Auth', function(Auth){
+				// return Auth.$requireAuth()
+			// }]	
+		// }
+      }).
+	  state('/login', {
 		templateUrl: 'login.html',
 		controller: 'PagesCtrl',
 		resolve: {
@@ -27,19 +44,7 @@ slimfireApp.config(
 				return Auth.$waitForAuth()
 			}]	
 		}
-      }).
-      when('/app/:page', {
-        templateUrl: function(params){return 'views/' + params.page + '.html'},
-		controller: 'PagesCtrl',
-		resolve: {
-			'authData': ['Auth', function(Auth){
-				return Auth.$requireAuth()
-			}]	
-		}
-      }).
-      otherwise({
-        redirectTo: '/login'
-      });
+      })
   });
   
 slimfireApp.filter('reverse', function() {
