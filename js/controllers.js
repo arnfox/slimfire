@@ -6,7 +6,9 @@ var slimfireControllers = angular.module('slimfireControllers', []);
 
 //slimfireControllers.controller('PagesCtrl', ['FB', 'authData', '$scope', 
 slimfireControllers.controller('PagesCtrl', ['FB', '$scope', 
-	function(FB, authData, $scope) {
+	function(FB, $scope, authData) {
+		
+		$scope.$on('$viewContentLoaded', SBMenu)
 		
 		console.log('authData')
 		//console.log(authData)

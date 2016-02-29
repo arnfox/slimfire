@@ -25,7 +25,7 @@ slimfireApp.config(
 	  state('page', {
 		url: '/pages/:id',
 		views: {
-			'@': {templateUrl: 'views/layouts/page.html'},
+			'@': {templateUrl: 'views/layouts/page.html', controller: 'PagesCtrl'},
 			'nav@page': {templateUrl: 'views/partials/nav.html', controller: 'PagesCtrl'},
 			'body@page': {templateUrl: function($stateParams){return 'views/pages/' + $stateParams.id + '.html'}}
 		},
