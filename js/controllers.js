@@ -5,10 +5,12 @@
 var slimfireControllers = angular.module('slimfireControllers', []);
 
 //slimfireControllers.controller('PagesCtrl', ['FB', 'authData', '$scope', 
-slimfireControllers.controller('PagesCtrl', ['FB', '$scope', 
-	function(FB, $scope, authData) {
+slimfireControllers.controller('PagesCtrl', 
+	function(FB, $scope) {
 		
-		$scope.$on('$viewContentLoaded', SBMenu)
+		//$ocLazyLoad.load('../dist/js/sb-admin-2.js')
+		
+		//$scope.$on('$viewContentLoaded', SBMenu)
 		
 		console.log('authData')
 		//console.log(authData)
@@ -19,4 +21,4 @@ slimfireControllers.controller('PagesCtrl', ['FB', '$scope',
 			// $scope.expenses.$add($scope.exp)
 			// $scope.exp = {}
 		// }
-	}]);
+	});

@@ -4,6 +4,7 @@
 
 var slimfireApp = angular.module('slimfireApp', [
   'ui.router',
+  'oc.lazyLoad',
   'slimfireServices',
   'slimfireControllers'
 ]);
@@ -17,19 +18,38 @@ slimfireApp.run(function($rootScope, $location){
 })
 
 slimfireApp.config( 
-  function($stateProvider, $urlRouterProvider) {
+  function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+	
+	$ocLazyLoadProvider.config({
+      debug:false,
+      events:true,
+    });
+	  
 	$urlRouterProvider.
       otherwise('/pages/dashboard');
 	
     $stateProvider.
-	  state('page', {
+	  state('index', {
+		  abstract: true,
+		  templateUrl: 'views/layouts/page.html',
+		  controller: 'PagesCtrl',
+		  resolve: {
+            loadMyFiles: function($ocLazyLoad) {
+				return $ocLazyLoad.load({
+				  name:'navMenu',
+				  files:[
+					'dist/js/sb-admin-2.js'
+				  ]
+				})
+			}
+		  }
+	  }).
+	  state('index.page', {
 		url: '/pages/:id',
 		views: {
-			'@': {templateUrl: 'views/layouts/page.html', controller: 'PagesCtrl'},
-			'nav@page': {templateUrl: 'views/partials/nav.html', controller: 'PagesCtrl'},
-			'body@page': {templateUrl: function($stateParams){return 'views/pages/' + $stateParams.id + '.html'}}
-		},
-		controller: 'PagesCtrl'
+			'nav': {templateUrl: 'views/partials/nav.html'},
+			'body': {templateUrl: function($stateParams){return 'views/pages/' + $stateParams.id + '.html'}}
+		}
 		// resolve: {
 			// 'authData': ['Auth', function(Auth){
 				// return Auth.$requireAuth()
