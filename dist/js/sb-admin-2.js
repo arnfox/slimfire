@@ -29,6 +29,4 @@ $(function() {
     if (element.is('li')) {
         element.addClass('active');
     }
-	
-	console.log('sb-js loaded');
 });

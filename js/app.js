@@ -20,11 +20,6 @@ slimfireApp.run(function($rootScope, $location){
 slimfireApp.config( 
   function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
 	
-	$ocLazyLoadProvider.config({
-      debug:false,
-      events:true,
-    });
-	  
 	$urlRouterProvider.
       otherwise('/pages/dashboard');
 	
@@ -32,22 +27,12 @@ slimfireApp.config(
 	  state('index', {
 		  abstract: true,
 		  templateUrl: 'views/layouts/page.html',
-		  controller: 'PagesCtrl',
-		  resolve: {
-            loadMyFiles: function($ocLazyLoad) {
-				return $ocLazyLoad.load({
-				  name:'navMenu',
-				  files:[
-					'dist/js/sb-admin-2.js'
-				  ]
-				})
-			}
-		  }
+		  controller: 'PagesCtrl'
 	  }).
 	  state('index.page', {
 		url: '/pages/:id',
 		views: {
-			'nav': {templateUrl: 'views/partials/nav.html'},
+			'nav': {templateUrl: 'views/partials/nav.html', controller: function($ocLazyLoad){$ocLazyLoad.load('dist/js/sb-admin-2.js')}},
 			'body': {templateUrl: function($stateParams){return 'views/pages/' + $stateParams.id + '.html'}}
 		}
 		// resolve: {
