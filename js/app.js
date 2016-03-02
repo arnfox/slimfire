@@ -54,6 +54,6 @@ slimfireApp.config(
   
 slimfireApp.filter('reverse', function() {
   return function(items) {
-    return items.slice().reverse();
+	return Object.prototype.toString.call( items ) === '[object Array]' ? items.slice().reverse() : items
   };
 });

@@ -11,9 +11,8 @@ slimfireServices.factory("Auth", ["$firebaseAuth",
   }
 ]);
 
-slimfireServices.factory("FB", ["$firebaseArray",
-  function($firebaseArray) {
-    var ref = new Firebase("https://slimfire.firebaseio.com");
-    return $firebaseArray(ref);
+slimfireServices.factory("FB",
+  function() {
+    return new Firebase("https://slimfire.firebaseio.com");
   }
-]);
+);

@@ -2,23 +2,19 @@
 
 /* Controllers */
 
-var slimfireControllers = angular.module('slimfireControllers', []);
+var slimfireControllers = angular.module('slimfireControllers', ['firebase']);
 
-//slimfireControllers.controller('PagesCtrl', ['FB', 'authData', '$scope', 
 slimfireControllers.controller('PagesCtrl', 
-	function(FB, $scope) {
+	function(FB, $scope, $firebaseArray) {
+		$scope.exp = {}
 		
-		//$ocLazyLoad.load('../dist/js/sb-admin-2.js')
+		var FBExpenses = FB.child('ss-expenses')
 		
-		//$scope.$on('$viewContentLoaded', SBMenu)
-		
-		console.log('authData')
-		//console.log(authData)
-		
-		// $scope.expenses = FB['ss-expenses']
-		
-		// $scope.addExpense = function(){
-			// $scope.expenses.$add($scope.exp)
-			// $scope.exp = {}
-		// }
+		$scope.expenses = $firebaseArray(FBExpenses)
+			
+		$scope.addExpense = function(){
+			console.log($scope.exp)
+			$scope.expenses.$add($scope.exp)
+			$scope.exp = {}
+		}
 	});
