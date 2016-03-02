@@ -10,7 +10,7 @@
   "scripts": {
     "postinstall": "bower install",
 
-    "prestart": "npm install",
+	"prestart": "git pull && npm install",
     "start": "http-server -a 0.0.0.0 -p 8282"
   },
   "repository": {
