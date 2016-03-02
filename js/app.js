@@ -9,10 +9,10 @@ var slimfireApp = angular.module('slimfireApp', [
   'slimfireControllers'
 ]);
 
-slimfireApp.run(function($rootScope, $location){
-	$rootScope.$on('$routeChangeError', function(event, next, previous, error){
+slimfireApp.run(function($rootScope, $state){
+	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
 		if(error === "AUTH_REQUIRED"){
-			$location.path("/login")
+			$state.go("login")
 		}
 	})
 })
@@ -34,16 +34,16 @@ slimfireApp.config(
 		views: {
 			'nav': {templateUrl: 'views/partials/nav.html', controller: function($ocLazyLoad){$ocLazyLoad.load('dist/js/sb-admin-2.js')}},
 			'body': {templateUrl: function($stateParams){return 'views/pages/' + $stateParams.id + '.html'}}
+		},
+		resolve: {
+			'authData': ['Auth', function(Auth){
+				return Auth.$requireAuth()
+			}]	
 		}
-		// resolve: {
-			// 'authData': ['Auth', function(Auth){
-				// return Auth.$requireAuth()
-			// }]	
-		// }
       }).
-	  state('/login', {
-		templateUrl: 'login.html',
-		controller: 'PagesCtrl',
+	  state('login', {
+		templateUrl: 'views/layouts/login.html',
+		controller: 'loginCtrl',
 		resolve: {
 			'authData': ['Auth', function(Auth){
 				return Auth.$waitForAuth()

@@ -17,4 +17,21 @@ slimfireControllers.controller('PagesCtrl',
 			$scope.expenses.$add($scope.exp)
 			$scope.exp = {}
 		}
-	});
+	}
+);
+
+slimfireControllers.controller('loginCtrl', 
+	function($scope, Auth) {
+		
+		$scope.Login = function(){
+			Auth.$authAnonymously()
+				.then(function(authData){
+					console.log("Logged user: " + authData.uid)
+					
+				})
+				.catch(function(){
+					console.error("Error trying to authenticate user")
+				})
+		}
+	}
+);
