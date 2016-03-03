@@ -34,8 +34,15 @@ slimfireApp.config(
 		views: {
 			'nav': {
 				templateUrl: 'views/partials/nav.html', 
-				controller: function($ocLazyLoad){
-					$ocLazyLoad.load('dist/js/sb-admin-2.js')
+				controller: function($ocLazyLoad, $scope){
+					$scope.$on('$viewContentLoaded', function(){
+						$ocLazyLoad.load('bower_components/metisMenu/dist/metisMenu.min.js')
+						$ocLazyLoad.load({
+							cache: false,
+							files: [
+								'dist/js/sb-admin-2.js'
+						]})
+					})
 				}
 			},
 			'body': {templateUrl: function($stateParams){return 'views/pages/' + $stateParams.id + '.html'}}
