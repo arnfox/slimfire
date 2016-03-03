@@ -27,7 +27,7 @@ slimfireApp.config(
 	  state('index', {
 		  abstract: true,
 		  templateUrl: 'views/layouts/page.html',
-		  controller: 'PagesCtrl'
+		  controller: 'indexCtrl'
 	  }).
 	  state('index.page', {
 		url: '/pages/:id',
@@ -45,7 +45,10 @@ slimfireApp.config(
 					})
 				}
 			},
-			'body': {templateUrl: function($stateParams){return 'views/pages/' + $stateParams.id + '.html'}}
+			'body': {
+				templateUrl: function($stateParams){return 'views/pages/' + $stateParams.id + '.html'},
+				controller: 'bodyCtrl'
+			}
 		},
 		resolve: {
 			'authData': ['Auth', function(Auth){

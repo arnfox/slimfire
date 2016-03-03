@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Staff Management</h1>
+		
+		<form ng-submit="db.Add()" onsubmit="$(this).children().first().focus()" >
+			<input ng-model="row.first_name" type="text" placeholder="First Name" autofocus /> | 
+			<input ng-model="row.last_name" type="text" placeholder="Last Name" /> |
+			<input ng-model="row.position" type="text" placeholder="Position" /> &nbsp;
+			<input type='submit' value="new" />
+		</form>
+		
+		<hr />
+		
+		<ul>
+			<li ng-repeat="employee in db | reverse">
+				<a href ng-click="db.$remove(employee)">[x]</a> {{employee.first_name}} | {{employee.last_name}} | {{employee.position}}
+			</li>
+		</ul>
+	</div>	
+	
+	<!-- /.col-lg-12 -->
+</div>

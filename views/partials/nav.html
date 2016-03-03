@@ -234,19 +234,22 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/#/pages/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a ui-sref="index.page({id:'dashboard'})"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
 						<li>
-                            <a href="/#/pages/ss-expenses"><i class="fa fa-money fa-fw"></i> SS Expenses</a>
+                            <a ui-sref="index.page({id:'ss-expenses'})"><i class="fa fa-money fa-fw"></i> SS Expenses</a>
+                        </li>
+                        <li>
+                            <a ui-sref="index.page({id:'staff'})"><i class="fa fa-users fa-fw"></i> Staff</a>
                         </li>
                         <li>
                             <a href><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/#/pages/flot">Flot Charts</a>
+                                    <a ui-sref="index.page({id:'float'})">Flot Charts</a>
                                 </li>
                                 <li>
-                                    <a href="/#/pages/morris">Morris.js Charts</a>
+                                    <a ui-sref="index.page({id:'morris'})">Morris.js Charts</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

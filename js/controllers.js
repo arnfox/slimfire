@@ -2,27 +2,28 @@
 
 /* Controllers */
 
-var slimfireControllers = angular.module('slimfireControllers', ['firebase']);
+var slimfireControllers = angular.module('slimfireControllers', ['firebase', 'ui.router']);
 
-slimfireControllers.controller('PagesCtrl', 
-	function(FB, Auth, $scope, $firebaseArray, $location) {
-		
+slimfireControllers.controller('indexCtrl', 
+	function(Auth, $location, $scope) {
 		$scope.Logout = function(){
 			Auth.$unauth()
-			$scope.expenses.$destroy()
 			$location.path("/login")
 		}
-		
-		// --- SS EXpense --
-		$scope.exp = {}
-		
-		var FBExpenses = FB.child('ss-expenses')
-		
-		$scope.expenses = $firebaseArray(FBExpenses)
-			
-		$scope.addExpense = function(){
-			$scope.expenses.$add($scope.exp)
-			$scope.exp = {}
+	}
+);
+
+slimfireControllers.controller('bodyCtrl', 
+	function(FB, $scope, $firebaseArray, $location, $state) {
+		$scope.$on('$destroy', function() {
+        	$scope.db.$destroy()
+    	});
+		var FBModel = FB.child($state.params.id)
+		$scope.db = $firebaseArray(FBModel)
+		$scope.row = {}
+		$scope.db.Add = function(){
+			$scope.db.$add($scope.row)
+			$scope.row = {}
 		}
 	}
 );
@@ -38,7 +39,6 @@ slimfireControllers.controller('loginCtrl',
 				password: $scope.user.password
 			})
 			.then(function(authData){
-				console.log("Logged user: " + authData.uid)
 				$location.path("/pages/dashboard")
 			})
 			.catch(function(){
