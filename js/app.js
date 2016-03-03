@@ -32,7 +32,12 @@ slimfireApp.config(
 	  state('index.page', {
 		url: '/pages/:id',
 		views: {
-			'nav': {templateUrl: 'views/partials/nav.html', controller: function($ocLazyLoad){$ocLazyLoad.load('dist/js/sb-admin-2.js')}},
+			'nav': {
+				templateUrl: 'views/partials/nav.html', 
+				controller: function($ocLazyLoad){
+					$ocLazyLoad.load('dist/js/sb-admin-2.js')
+				}
+			},
 			'body': {templateUrl: function($stateParams){return 'views/pages/' + $stateParams.id + '.html'}}
 		},
 		resolve: {
@@ -42,6 +47,7 @@ slimfireApp.config(
 		}
       }).
 	  state('login', {
+		url: "/login",
 		templateUrl: 'views/layouts/login.html',
 		controller: 'loginCtrl',
 		resolve: {
