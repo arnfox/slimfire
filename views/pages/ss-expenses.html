@@ -2,18 +2,71 @@
 	<div class="col-lg-12">
 		<h1 class="page-header">SS Expenses</h1>
 		
-		<form ng-submit="db.Add()" onsubmit="$('#ExpAmount').focus()" >
-			<input id="ExpAmount" ng-model="row.amount" type="text" placeholder="amount" autofocus /> | <input ng-model="row.description" type="text" placeholder="description" />
-			<input type='submit' value="Add Expense!" />
-		</form>
-		
-		<hr />
-		
-		<ul>
-			<li ng-repeat="exp in db | reverse">
-				<a href ng-click="db.$remove(exp)">[x]</a> {{exp.amount}} | {{exp.description}}
-			</li>
-		</ul>
+		<div class="panel panel-default">
+			
+			<div class="panel-heading">List Of Expenses</div>
+
+			<div class="panel-body">
+
+				
+				<form class="fb-form" ng-submit="db.Save()" onsubmit="$('#ExpAmount').focus()" role="form">
+					<div class="form-inline">
+						<div class="form-group">
+							<label>Date</label>
+							<input class="form-control" ng-model="row.date" type="date" ng-value="Date.now() | date:'yyyy-MM-dd'" />							
+						</div>
+						<div class="form-group">
+							<label>Amount</label>
+							<input class="form-control" id="ExpAmount" ng-model="row.amount" type="text" placeholder="amount" autofocus />							
+						</div>
+						<div class="form-group">
+							<label>Currency</label>
+							<select class="form-control" ng-model="row.currency" >
+								<option value="UAH" ng-selected="true">UAH</option>
+								<option value="USD">USD</option>
+								<option value="EUR">EUR</option>
+								<option value="GBP">GBP</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Description</label>
+							<input class="form-control" ng-model="row.description" type="text" placeholder="description" />
+						</div>
+						<div class="form-group">
+							<label>&nbsp;</label>
+							<button class="form-control btn" ng-class="row.$id ? 'btn-warning' : 'btn-primary'"><i class="fa fa-play"></i></button>
+						</div>
+					</div>
+				</form>
+
+				<br />
+
+				<div class="table-responsive">
+					<table class="table table-bordered table-striped"
+						<thead>
+							<tr>
+								<th>Amount</th>
+								<th>Description</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="exp in db | reverse">
+								<td>{{exp.amount}}</td>
+								<td>{{exp.description}}</td>
+								<th>
+									<button class="btn btn-default btn-circle" ng-click="FBEdit(exp)"><i class="fa fa-pencil"></i></button>
+									<button class="btn btn-default btn-circle" ng-click="db.$remove(exp)" ng-confirm-click="Sure?"><i class="fa fa-times"></i></button>
+								</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /.panel -->
 	</div>	
 	
 	<!-- /.col-lg-12 -->

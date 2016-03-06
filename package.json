@@ -8,7 +8,7 @@
     "bower": "^1.3.1"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "bower install && lessc less/sb-admin-2.less dist/css/sb-admin-2.css",
 
 	"prestart": "git pull && npm install",
     "start": "http-server -a 0.0.0.0 -p 8282"

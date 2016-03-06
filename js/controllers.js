@@ -21,9 +21,13 @@ slimfireControllers.controller('bodyCtrl',
 		var FBModel = FB.child($state.params.id)
 		$scope.db = $firebaseArray(FBModel)
 		$scope.row = {}
-		$scope.db.Add = function(){
-			$scope.db.$add($scope.row)
+		$scope.db.Save = function(){
+			$scope.row.$id ? $scope.db.$save($scope.row) : $scope.db.$add($scope.row)
 			$scope.row = {}
+		}
+
+		$scope.FBEdit = function(model){
+			$scope.row = model
 		}
 	}
 );
