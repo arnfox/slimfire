@@ -2,6 +2,8 @@
 
 /* Controllers */
 
+var fbRef = new Firebase("https://slimfire.firebaseio.com")
+
 var slimfireControllers = angular.module('slimfireControllers', ['firebase', 'ui.router']);
 
 slimfireControllers.controller('indexCtrl', 
@@ -18,12 +20,12 @@ slimfireControllers.controller('bodyCtrl',
 		$scope.$on('$destroy', function() {
         	$scope.db.$destroy()
     	});
-		var FBModel = FB.child($state.params.id)
-		$scope.db = $firebaseArray(FBModel)
-		$scope.row = {}
+		var FBModel = fbRef.child($state.params.id)
+		$scope.db = FB(FBModel)
+		$scope.row = {date:new Date()}
 		$scope.db.Save = function(){
 			$scope.row.$id ? $scope.db.$save($scope.row) : $scope.db.$add($scope.row)
-			$scope.row = {}
+			$scope.row = {date:new Date()}
 		}
 
 		$scope.FBEdit = function(model){

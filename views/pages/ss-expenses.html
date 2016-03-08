@@ -4,22 +4,20 @@
 		
 		<div class="panel panel-default">
 			
-			<div class="panel-heading">List Of Expenses</div>
-
 			<div class="panel-body">
 
 				
 				<form class="fb-form" ng-submit="db.Save()" onsubmit="$('#ExpAmount').focus()" role="form">
-					<div class="form-inline">
-						<div class="form-group">
+					<div class="row">
+						<div class="form-group col-md-2">
 							<label>Date</label>
-							<input class="form-control" ng-model="row.date" type="date" ng-value="Date.now() | date:'yyyy-MM-dd'" />							
+							<input class="form-control" ng-model="row.date" type="date" />							
 						</div>
-						<div class="form-group">
+						<div class="form-group col-md-2">
 							<label>Amount</label>
 							<input class="form-control" id="ExpAmount" ng-model="row.amount" type="text" placeholder="amount" autofocus />							
 						</div>
-						<div class="form-group">
+						<div class="form-group col-md-2">
 							<label>Currency</label>
 							<select class="form-control" ng-model="row.currency" >
 								<option value="UAH" ng-selected="true">UAH</option>
@@ -28,11 +26,11 @@
 								<option value="GBP">GBP</option>
 							</select>
 						</div>
-						<div class="form-group">
+						<div class="form-group col-md-3">
 							<label>Description</label>
 							<input class="form-control" ng-model="row.description" type="text" placeholder="description" />
 						</div>
-						<div class="form-group">
+						<div class="form-group col-md-1">
 							<label>&nbsp;</label>
 							<button class="form-control btn" ng-class="row.$id ? 'btn-warning' : 'btn-primary'"><i class="fa fa-play"></i></button>
 						</div>
