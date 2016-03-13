@@ -17,15 +17,24 @@ slimfireControllers.controller('indexCtrl',
 
 slimfireControllers.controller('bodyCtrl', 
 	function(FB, $scope, $firebaseArray, $location, $state) {
+
+		$scope.currencies = ['UAH', 'USD', 'EUR', 'GBP']
+
 		$scope.$on('$destroy', function() {
         	$scope.db.$destroy()
     	});
 		var FBModel = fbRef.child($state.params.id)
+		$scope.init = function(){
+			$scope.row = {
+				date: new Date(),
+				currency: $scope.currencies[0]
+			}
+		}
 		$scope.db = FB(FBModel)
-		$scope.row = {date:new Date()}
+		$scope.init()
 		$scope.db.Save = function(){
 			$scope.row.$id ? $scope.db.$save($scope.row) : $scope.db.$add($scope.row)
-			$scope.row = {date:new Date()}
+			$scope.init()
 		}
 
 		$scope.FBEdit = function(model){

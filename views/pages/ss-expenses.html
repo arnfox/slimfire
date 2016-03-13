@@ -19,11 +19,7 @@
 						</div>
 						<div class="form-group col-md-2">
 							<label>Currency</label>
-							<select class="form-control" ng-model="row.currency" >
-								<option value="UAH" ng-selected="true">UAH</option>
-								<option value="USD">USD</option>
-								<option value="EUR">EUR</option>
-								<option value="GBP">GBP</option>
+							<select class="form-control" ng-model="row.currency" ng-options="currency for currency in currencies">
 							</select>
 						</div>
 						<div class="form-group col-md-3">
@@ -44,6 +40,7 @@
 						<thead>
 							<tr>
 								<th>Amount</th>
+								<th>Currency</th>
 								<th>Description</th>
 								<th></th>
 							</tr>
@@ -51,6 +48,7 @@
 						<tbody>
 							<tr ng-repeat="exp in db | reverse">
 								<td>{{exp.amount}}</td>
+								<td>{{exp.currency}}</td>
 								<td>{{exp.description}}</td>
 								<th>
 									<button class="btn btn-default btn-circle" ng-click="FBEdit(exp)"><i class="fa fa-pencil"></i></button>
