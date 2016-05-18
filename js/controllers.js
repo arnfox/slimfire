@@ -16,7 +16,7 @@ slimfireControllers.controller('indexCtrl',
 );
 
 slimfireControllers.controller('bodyCtrl', 
-	function(FB, $scope, $firebaseArray, $location, $state) {
+	function(FB, $scope, $location, $state) {
 
 		$scope.currencies = ['UAH', 'USD', 'EUR', 'GBP']
 
